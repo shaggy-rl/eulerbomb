@@ -14,9 +14,9 @@ def multfilter(x,y):
     return answer
 
 # Used in Number 2
-def fib(x):
+def fib(x,start = 0, stop = 1):
     """Return a list of fibbonaci numbers under x"""
-    answer = [0,1]
+    answer = [start,stop]
     while (answer[-1] < x):
         answer.append(answer[-1] + answer[-2])
     answer.pop()
