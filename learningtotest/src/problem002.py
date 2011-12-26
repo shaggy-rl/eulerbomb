@@ -1,5 +1,6 @@
 from euler import fib,even,listsum
 from time import time
+
 class problem002():
     def __init__(self):
         self.start = time()
