@@ -48,6 +48,8 @@ def primefactors(x):
 def ispalindrome(x):
     """Used in reduce to return the sum of a list"""
     return x == int(str(x)[::-1])
+
+# Used in Number 4
 def multlist(x,y):
     """Return a list of numbers that are every multiple of x <= i < y"""
     answer = []
@@ -59,3 +61,15 @@ def multlist(x,y):
             j += 1
         i += 1
     return sorted(answer)
+
+# Used in Number 5
+def gcd(x,y):
+    """Return greatest common denominator, iterative solution"""
+    while (y != 0):
+        (x,y) = (y,x%y)
+    return x
+
+# Used in Number 5
+def lcm(x,y):
+    """Return least common multiple"""
+    return x * y / gcd(x,y)
