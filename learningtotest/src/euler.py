@@ -131,4 +131,5 @@ def primesunder(x):
 
 # Used to test Number 10
 def sumofprimesunder(x):
+    """Return the sum of the primes under x"""
     return reduce(listsum,primesunder(x))
