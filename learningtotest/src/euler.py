@@ -94,38 +94,40 @@ def squareofsums(start,stop):
         i += 1
     return answer ** 2
 
-# Used in Number 7
-def thismanyprimes(x):
-    """Return the first x primes"""
-    answer = [2]
+def primes():
+    yield 2
+    primes = [2]
     i = 3
-    while (len(answer) < x):
+    while (1):
         j = 0
         isprime = 1
-        while (isprime == 1 and j < len(answer)):
-            if (i % answer[j] == 0):
+        while (isprime == 1 and j < len(primes) and primes[j] ** 2 <= i):
+            if (i % primes[j] == 0):
                 isprime = 0
             j += 1
         if (isprime == 1):
-            answer.append(i)
+            primes.append(i)
+            yield i
         i += 1
+
+# Used in Number 7
+def thismanyprimes(x):
+    """Return the first x primes"""
+    nextprime=primes()
+    answer = [nextprime.next()]
+    while (len(answer) < x):
+        answer.append(nextprime.next())
+        # print "A",x,len(answer),answer
     return answer
 
 # Used in Number 10
 def primesunder(x):
     """Return primes under x"""
-    answer = [2]
-    i = 3
+    nextprime=primes()
+    answer = [nextprime.next()]
     while (answer[-1] < x):
-        j = 0
-        isprime = 1
-        while (isprime == 1 and j < len(answer) and answer[j] ** 2 <= i):
-            if (i % answer[j] == 0):
-                isprime = 0
-            j += 1
-        if (isprime == 1):
-            answer.append(i)
-        i += 2
+        answer.append(nextprime.next())
+        # print "B",x,answer[-1],answer
     answer.pop()
     return answer
 
