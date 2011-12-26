@@ -31,3 +31,15 @@ def even(x):
 def listsum(x,y):
     """Used in reduce to return the sum of a list"""
     return x + y
+
+# Used in Number 3
+def primefactors(x):
+    """Return prime factors of x"""
+    answer = []
+    i = 2
+    while (i <= x):
+        while (x % i == 0):
+            answer.append(i)
+            x /= i
+        i += 1
+    return answer
