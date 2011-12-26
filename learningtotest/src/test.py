@@ -22,10 +22,10 @@ from euler import thismanyprimes
 from euler import sumofprimesunder
 
 class TestSequenceFunctions(unittest.TestCase):
-    def test_filter(self):
+    def test__filter(self):
         self.assertEqual(multfilter(10,[3,5]),23) # Example from #1
 
-    def test_fib(self):
+    def test__fib(self):
         answer = []
         i = 0
         while (len(answer) < 10):
@@ -33,28 +33,28 @@ class TestSequenceFunctions(unittest.TestCase):
             answer = fib(i,1,2)
         self.assertEqual(fib(i,1,2),[1, 2, 3, 5, 8, 13, 21, 34, 55, 89]) # Example from #2
 
-    def test_primefactors(self):
+    def test__primefactors(self):
         self.assertEqual(primefactors(13195),[5,7,13,29]) # Example from #3
 
-    def test_multlist(self):
+    def test__multlist(self):
         self.assertEqual(filter(ispalindrome,multlist(10,100))[-1],9009) # Example from #4
 
-    def test_lcm(self):
+    def test__lcm(self):
         self.assertEqual(reduce(lcm,range(1,10)),2520) # Example from #5
 
-    def test_squareofsums(self):
+    def test__squareofsums(self):
         self.assertEqual(squareofsums(1,10),3025) # Example from #6
 
-    def test_sumofsquares(self):
+    def test__sumofsquares(self):
         self.assertEqual(sumofsquares(1,10),385) # Example from #6
 
-    def test_testmethodforsix(self):
+    def test__testmethodforsix(self):
         self.assertEqual(abs(sumofsquares(1,10)-squareofsums(1,10)),2640) # Example from #6
 
-    def test_thismanyprimes(self):
+    def test__thismanyprimes(self):
         self.assertEqual(thismanyprimes(6),[2,3,5,7,11,13]) # Example from #7
 
-    def test_sumofprimesunder(self):
+    def test__sumofprimesunder(self):
         self.assertEqual(sumofprimesunder(10),17) # Example from #10
 
     # Once I have the correct answer, make sure I don't break it later
@@ -88,5 +88,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_problem010(self):
         self.assertEqual(problem010.problem010().answer,142913828922)
 
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+#    unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
+unittest.TextTestRunner(verbosity=2).run(suite)
