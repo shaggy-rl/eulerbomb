@@ -93,3 +93,20 @@ def squareofsums(start,stop):
         answer += i
         i += 1
     return answer ** 2
+
+# Used in Number 7
+def thismanyprimes(x):
+    """Return the first x primes"""
+    answer = [2]
+    i = 3
+    while (len(answer) < x):
+        j = 0
+        isprime = 1
+        while (isprime == 1 and j < len(answer)):
+            if (i % answer[j] == 0):
+                isprime = 0
+            j += 1
+        if (isprime == 1):
+            answer.append(i)
+        i += 1
+    return answer
