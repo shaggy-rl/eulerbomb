@@ -8,6 +8,7 @@ from euler import lcm
 from euler import sumofsquares
 from euler import squareofsums
 from euler import thismanyprimes
+from euler import sumofprimesunder
 
 class TestSequenceFunctions(unittest.TestCase):
     def test_filter(self):
@@ -41,6 +42,9 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_thismanyprimes(self):
         self.assertEqual(thismanyprimes(6),[2,3,5,7,11,13]) # Example from #7
+
+    def test_sumofprimesunder(self):
+        self.assertEqual(sumofprimesunder(10),17) # Example from #10
 
 if __name__ == '__main__':
     unittest.main()

@@ -7,6 +7,8 @@ import problem005
 import problem006
 import problem007
 import problem008
+import problem009
+import problem010
 
 class TestSequenceFunctions(unittest.TestCase):
     def test_problem001(self):
@@ -25,6 +27,10 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(problem007.problem007().answer,104743)
     def test_problem008(self):
         self.assertEqual(problem008.problem008().answer,40824)
+    def test_problem009(self):
+        self.assertEqual(problem009.problem009().answer,31875000)
+    def test_problem010(self):
+        self.assertEqual(problem010.problem010().answer,142913828922)
 
 if __name__ == '__main__':
     unittest.main()

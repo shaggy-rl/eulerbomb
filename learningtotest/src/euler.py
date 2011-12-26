@@ -110,3 +110,25 @@ def thismanyprimes(x):
             answer.append(i)
         i += 1
     return answer
+
+# Used in Number 10
+def primesunder(x):
+    """Return primes under x"""
+    answer = [2]
+    i = 3
+    while (answer[-1] < x):
+        j = 0
+        isprime = 1
+        while (isprime == 1 and j < len(answer) and answer[j] ** 2 <= i):
+            if (i % answer[j] == 0):
+                isprime = 0
+            j += 1
+        if (isprime == 1):
+            answer.append(i)
+        i += 2
+    answer.pop()
+    return answer
+
+# Used to test Number 10
+def sumofprimesunder(x):
+    return reduce(listsum,primesunder(x))
