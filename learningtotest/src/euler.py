@@ -95,6 +95,7 @@ def squareofsums(start,stop):
     return answer ** 2
 
 def primes():
+    """Prime number generator"""
     yield 2
     primes = [2]
     i = 3
