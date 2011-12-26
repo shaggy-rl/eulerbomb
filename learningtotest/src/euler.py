@@ -1,5 +1,5 @@
 # Used in Number 1
-def filter(x,y):
+def multfilter(x,y):
     """Return total of integers under x that are multiples of any value in y"""
     i = 1
     answer = 0
@@ -43,3 +43,19 @@ def primefactors(x):
             x /= i
         i += 1
     return answer
+
+# Used in Number 4
+def ispalindrome(x):
+    """Used in reduce to return the sum of a list"""
+    return x == int(str(x)[::-1])
+def multlist(x,y):
+    """Return a list of numbers that are every multiple of x <= i < y"""
+    answer = []
+    i = x
+    while (i < y):
+        j = x
+        while(j < y):
+            answer.append(i * j)
+            j += 1
+        i += 1
+    return sorted(answer)
