@@ -1,4 +1,4 @@
-from naturalnumberfilter import filter
+from euler import filter
 
 class problem001():
     def __init__(self):
