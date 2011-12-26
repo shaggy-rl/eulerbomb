@@ -8,5 +8,6 @@ class problem002():
         self.stop = time()
         if (self.stop - self.start > 60):
             self.answer = "Too much time used on number 2: " + str(self.stop - self.start)
+
 if __name__ == '__main__':
     print problem002().answer
