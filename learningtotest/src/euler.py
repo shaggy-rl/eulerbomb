@@ -118,7 +118,6 @@ def thismanyprimes(x):
     answer = [nextprime.next()]
     while (len(answer) < x):
         answer.append(nextprime.next())
-        # print "A",x,len(answer),answer
     return answer
 
 # Used in Number 10
@@ -128,7 +127,6 @@ def primesunder(x):
     answer = [nextprime.next()]
     while (answer[-1] < x):
         answer.append(nextprime.next())
-        # print "B",x,answer[-1],answer
     answer.pop()
     return answer
 
