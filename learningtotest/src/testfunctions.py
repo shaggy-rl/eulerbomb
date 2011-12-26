@@ -5,6 +5,8 @@ from euler import primefactors
 from euler import multlist
 from euler import ispalindrome
 from euler import lcm
+from euler import sumofsquares
+from euler import squareofsums
 
 class TestSequenceFunctions(unittest.TestCase):
     def test_filter(self):
@@ -22,6 +24,12 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(filter(ispalindrome,multlist(10,100))[-1],9009) # Example from #4
     def test_lcm(self):
         self.assertEqual(reduce(lcm,range(1,10)),2520) # Example from #5
+    def test_squareofsums(self):
+        self.assertEqual(squareofsums(1,10),3025) # Example from #6
+    def test_sumofsquares(self):
+        self.assertEqual(sumofsquares(1,10),385) # Example from #6
+    def test_testmethodforsix(self):
+        self.assertEqual(abs(sumofsquares(1,10)-squareofsums(1,10)),2640) # Example from #6
 
 if __name__ == '__main__':
     unittest.main()

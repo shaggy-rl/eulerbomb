@@ -73,3 +73,23 @@ def gcd(x,y):
 def lcm(x,y):
     """Return least common multiple"""
     return x * y / gcd(x,y)
+
+# Used in Number 6
+def sumofsquares(start,stop):
+    """Return the sum of the squares"""
+    i = start
+    answer = 0
+    while (i <= stop):
+        answer += i ** 2
+        i += 1
+    return answer
+
+# Used in Number 6
+def squareofsums(start,stop):
+    """Return the square of the summation"""
+    i = start
+    answer = 0
+    while (i <= stop):
+        answer += i
+        i += 1
+    return answer ** 2
