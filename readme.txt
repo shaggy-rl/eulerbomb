@@ -1,1 +1,0 @@
-Started over on Euler again. Trying to learn test-driven development.
