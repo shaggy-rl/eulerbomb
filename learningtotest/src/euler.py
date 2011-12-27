@@ -28,6 +28,17 @@ class TestSequenceFunctions(unittest.TestCase):
     def test__lcm(self):
         self.assertEqual(reduce(lcm,range(1,10)),2520) # Example from #5
 
+    def test__divisors(self):
+        # Example from 12
+        self.i = trianglenumbers()
+        self.assertEqual(divisors(self.i.next()),[1])
+        self.assertEqual(divisors(self.i.next()),[1,3])
+        self.assertEqual(divisors(self.i.next()),[1,2,3,6])
+        self.assertEqual(divisors(self.i.next()),[1,2,5,10])
+        self.assertEqual(divisors(self.i.next()),[1,3,5,15])
+        self.assertEqual(divisors(self.i.next()),[1,3,7,21])
+        self.assertEqual(divisors(self.i.next()),[1,2,4,7,14,28])
+
     def test__squareofsums(self):
         self.assertEqual(squareofsums(1,10),3025) # Example from #6
 
@@ -42,6 +53,14 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test__sumofprimesunder(self):
         self.assertEqual(sumofprimesunder(10),17) # Example from #10
+
+    def test__triangle(self):
+        self.answer = []
+        self.i = 1
+        self.nexttri = trianglenumbers()
+        while (len(self.answer) < 10):
+            self.answer.append(self.nexttri.next())
+        self.assertEqual(self.answer,[1,3,6,10,15,21,28,36,45,55])
 
     # Once I have the correct answer, make sure I don't break it later
     def test_problem001(self):
@@ -74,6 +93,8 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_problem010(self):
         self.assertEqual(problem010().answer,142913828922)
 
+    def test_problem012(self):
+        self.assertEqual(problem012().answer,76576500)
 
 # Used in Number 1
 def multfilter(x,y):
@@ -309,7 +330,43 @@ class problem010():
         self.stop = time()
         if (self.stop - self.start > 60):
             self.answer = "Too much time used on number 10: " + str(self.stop - self.start)
-  
+
+# Used in problem 12
+def divisors(x):
+    """Return the divisors of x"""
+    if (x == 1):
+        return [1]
+    i = 1
+    answer = []
+    while (i * i <= x):
+        if (x % i == 0):
+            answer.append(i)
+            answer.append(x / i)
+        i += 1
+    if (answer[-1] == answer[-2]):
+        answer.pop()
+    return sorted(answer)
+
+# Used in problem 12
+def trianglenumbers():
+    """A generator that yields trianglular numbers"""
+    i = 1
+    while (1):
+        yield i * (i + 1) / 2
+        i += 1
+
+class problem012():
+    def __init__(self):
+        self.start = time()
+        self.divisors = []
+        self.tri = trianglenumbers()
+        while (len(self.divisors)<=500):
+            self.answer = self.tri.next()
+            self.divisors=divisors(self.answer)
+        self.stop = time()
+        if (self.stop - self.start > 60):
+            self.answer = "Too much time used on number 12: " + str(self.stop - self.start)
+
 if __name__ == '__main__':
     print "001",problem001().answer
     print "002",problem002().answer
@@ -321,3 +378,4 @@ if __name__ == '__main__':
     print "008",problem008().answer
     print "009",problem009().answer
     print "010",problem010().answer
+    print "012",problem012().answer
