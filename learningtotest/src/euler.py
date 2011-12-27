@@ -96,6 +96,9 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_problem012(self):
         self.assertEqual(problem012().answer,76576500)
 
+    def test_problem097(self):
+        self.assertEqual(problem097().answer,8739992577)
+
 # Used in Number 1
 def multfilter(x,y):
     """Return total of integers under x that are multiples of any value in y"""
@@ -367,6 +370,14 @@ class problem012():
         if (self.stop - self.start > 60):
             self.answer = "Too much time used on number 12: " + str(self.stop - self.start)
 
+class problem097():
+    def __init__(self):
+        self.start = time()
+        self.answer = (28433 * 2 ** 7830457 + 1) % 10 ** 10
+        self.stop = time()
+        if (self.stop - self.start > 60):
+            self.answer = "Too much time used on number 97: " + str(self.stop - self.start)
+
 if __name__ == '__main__':
     print "001",problem001().answer
     print "002",problem002().answer
@@ -379,3 +390,4 @@ if __name__ == '__main__':
     print "009",problem009().answer
     print "010",problem010().answer
     print "012",problem012().answer
+    print "097",problem097().answer
