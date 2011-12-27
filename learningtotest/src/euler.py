@@ -2,7 +2,6 @@ import unittest
 from time import time
 
 class TestSequenceFunctions(unittest.TestCase):
-    
     def test__filter(self):
         self.assertEqual(multfilter(10,[3,5]),23) # Example from #1
 
@@ -297,7 +296,6 @@ class problem009():
                     if (self.a ** 2 + self.b ** 2 == self.c ** 2 and self.a + self.b + self.c == 1000):
                         done = 1
                         self.answer = self.a * self.b * self.c
-                    self.c += 1
                 self.b += 1
             self.a += 1
         self.stop = time()
