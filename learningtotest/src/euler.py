@@ -1,6 +1,18 @@
 import unittest
 from time import time
 
+class Memoize: # stolen from http://code.activestate.com/recipes/52201/
+    """Memoize(fn) - an instance which acts like fn but memoizes its arguments
+       Will only work on functions with non-mutable arguments
+    """
+    def __init__(self, fn):
+        self.fn = fn
+        self.memo = {}
+    def __call__(self, *args):
+        if not self.memo.has_key(args):
+            self.memo[args] = self.fn(*args)
+        return self.memo[args]
+
 class TestSequenceFunctions(unittest.TestCase):
     def test__filter(self):
         self.assertEqual(multfilter(10,[3,5]),23) # Example from #1
@@ -27,6 +39,22 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test__lcm(self):
         self.assertEqual(reduce(lcm,range(1,10)),2520) # Example from #5
+
+    def test__numberchain(self):
+        self.assertEqual(numberchain(44),False)
+        self.assertEqual(numberchain(32),False)
+        self.assertEqual(numberchain(13),False)
+        self.assertEqual(numberchain(10),False)
+        self.assertEqual(numberchain(1),False)
+        self.assertEqual(numberchain(85),True)
+        self.assertEqual(numberchain(89),True)
+        self.assertEqual(numberchain(145),True)
+        self.assertEqual(numberchain(42),True)
+        self.assertEqual(numberchain(20),True)
+        self.assertEqual(numberchain(4),True)
+        self.assertEqual(numberchain(16),True)
+        self.assertEqual(numberchain(37),True)
+        self.assertEqual(numberchain(58),True)
 
     def test__divisors(self):
         # Example from 12
@@ -96,6 +124,9 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_problem012(self):
         self.assertEqual(problem012().answer,76576500)
 
+    def test_problem092(self):
+        self.assertEqual(problem092().answer,8581146)
+
     def test_problem097(self):
         self.assertEqual(problem097().answer,8739992577)
 
@@ -122,6 +153,19 @@ def fib(x,start = 0, stop = 1):
         answer.append(answer[-1] + answer[-2])
     answer.pop()
     return answer
+
+def numberchain(x):
+    """The next element in the chain is the sum of the squares of the digits of the current element"""
+    if (x == 1):
+        return False
+    if (x == 89):
+        return True
+    total = 0
+    for i in str(x):
+        total += int(i) ** 2
+    return numberchain(total)
+
+numberchain = Memoize(numberchain)
 
 # Used in Number 2
 def even(x):
@@ -370,6 +414,20 @@ class problem012():
         if (self.stop - self.start > 60):
             self.answer = "Too much time used on number 12: " + str(self.stop - self.start)
 
+class problem092():
+    def __init__(self):
+        self.start = time()
+        self.answer = len(filter(numberchain,range(1,10000000)))
+#        i = 1
+#        self.answer = 0
+#        while (i < 10000000):
+#            if (numberchain(i)):
+#                self.answer += 1
+#            i += 1
+        self.stop = time()
+        if (self.stop - self.start > 60):
+            self.answer = "Too much time used on number 92: " + str(self.stop - self.start)
+
 class problem097():
     def __init__(self):
         self.start = time()
@@ -390,4 +448,5 @@ if __name__ == '__main__':
     print "009",problem009().answer
     print "010",problem010().answer
     print "012",problem012().answer
+    print "092",problem092().answer
     print "097",problem097().answer
