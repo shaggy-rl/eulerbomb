@@ -161,11 +161,24 @@ def numberchain(x):
     if (x == 89):
         return True
     total = 0
-    for i in str(x):
-        total += int(i) ** 2
+    while (x > 0):
+        total += (x % 10) ** 2
+        x /= 10
     return numberchain(total)
 
 numberchain = Memoize(numberchain)
+
+def numberchainstart(x):
+    """The next element in the chain is the sum of the squares of the digits of the current element"""
+    if (x == 1):
+        return False
+    if (x == 89):
+        return True
+    total = 0
+    while (x > 0):
+        total += (x % 10) ** 2
+        x /= 10
+    return numberchain(total)
 
 # Used in Number 2
 def even(x):
@@ -417,13 +430,13 @@ class problem012():
 class problem092():
     def __init__(self):
         self.start = time()
-        self.answer = len(filter(numberchain,range(1,10000000)))
-#        i = 1
-#        self.answer = 0
-#        while (i < 10000000):
-#            if (numberchain(i)):
-#                self.answer += 1
-#            i += 1
+#        self.answer = len(filter(numberchainstart,range(1,10000000)))
+        i = 1
+        self.answer = 0
+        while (i < 10000000):
+            if (numberchainstart(i)):
+                self.answer += 1
+            i += 1
         self.stop = time()
         if (self.stop - self.start > 60):
             self.answer = "Too much time used on number 92: " + str(self.stop - self.start)
