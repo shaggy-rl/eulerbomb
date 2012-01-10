@@ -525,17 +525,17 @@ class problem097():
             self.answer = "Too much time used on number 97: " + str(self.stop - self.start)
 
 if __name__ == '__main__':
-    print "001",problem001().answer
-    print "002",problem002().answer
-    print "003",problem003().answer
-    print "004",problem004().answer
-    print "005",problem005().answer
-    print "006",problem006().answer
-    print "007",problem007().answer
-    print "008",problem008().answer
-    print "009",problem009().answer
-    print "010",problem010().answer
-    print "011",problem011().answer
-    print "012",problem012().answer
-    print "092",problem092().answer
-    print "097",problem097().answer
+    import euler
+    i = 0
+    while (i < 400):
+        j = str(i)
+        while (len(j) < 3):
+            j = "0" + j
+        try:
+            j = getattr(euler,"problem"+j)
+            if (j):
+                run = j()
+                print i,(run.stop - run.start),run.answer
+        except:
+            pass
+        i += 1
