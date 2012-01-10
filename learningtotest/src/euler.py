@@ -505,13 +505,13 @@ class problem012():
 class problem092():
     def __init__(self):
         self.start = time()
-#        self.answer = len(filter(numberchainstart,range(1,10000000)))
-        i = 1
-        self.answer = 0
-        while (i < 10000000):
-            if (numberchainstart(i)):
-                self.answer += 1
-            i += 1
+        self.answer = len(filter(numberchainstart,range(1,10000000)))
+#        i = 1
+#        self.answer = 0
+#        while (i < 10000000):
+#            if (numberchainstart(i)):
+#                self.answer += 1
+#            i += 1
         self.stop = time()
         if (self.stop - self.start > 60):
             self.answer = "Too much time used on number 92: " + str(self.stop - self.start)
