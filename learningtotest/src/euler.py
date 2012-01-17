@@ -207,7 +207,7 @@ def primefactors(x):
 
 # Used in Number 4
 def ispalindrome(x):
-    """Used in reduce to return the sum of a list"""
+    """Used in filter to check if a palindrome"""
     return x == int(str(x)[::-1])
 
 # Used in Number 4
