@@ -1,5 +1,8 @@
+import sys
 import unittest
 from time import time
+
+sys.setrecursionlimit(100000)
 
 class Memoize: # stolen from http://code.activestate.com/recipes/52201/
     """Memoize(fn) - an instance which acts like fn but memoizes its arguments
@@ -33,6 +36,9 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(even(13195),False)
         self.assertEqual(even(-10),True)
         self.assertEqual(even(-9),False)
+
+    def test__collatz(self):
+        self.assertEqual(collatz(13),10)
 
     def test__multlist(self):
         self.assertEqual(filter(ispalindrome,multlist(10,100))[-1],9009) # Example from #4
@@ -129,12 +135,29 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_problem013(self):
         self.assertEqual(problems.problem013().answer,5537376230)
+
+    def test_problem014(self):
+        self.assertEqual(problems.problem014().answer,837799)
         
     def test_problem092(self):
         self.assertEqual(problems.problem092().answer,8581146)
 
     def test_problem097(self):
         self.assertEqual(problems.problem097().answer,8739992577)
+
+# Used in #14
+collatzlist=dict()
+
+def collatz(x):
+    if (collatzlist.has_key(x)):
+        return collatzlist[x]
+    if (x == 1):
+        collatzlist[x] = -2
+    if (x % 2 == 0):
+        collatzlist[x] = 1 + collatz(x / 2)
+    else:
+        collatzlist[x] = 1 + collatz(3 * x + 1)
+    return collatzlist[x]
 
 # Used in Number 1
 def multfilter(x,y):
@@ -514,6 +537,21 @@ class problems():
             self.stop = time()
             if (self.stop - self.start > 60):
                 self.answer = "Too much time used on number 13: " + str(self.stop - self.start)
+
+    class problem014():
+        def __init__(self):
+            self.start = time()
+            i = 1
+            max = 0
+            while (i<1000000):
+                if (collatz(i) > max):
+                    max = collatz(i)
+                    self.answer = i
+                i = i + 1
+
+            self.stop = time()
+            if (self.stop - self.start > 60):
+                self.answer = "Too much time used on number 14: " + str(self.stop - self.start)
 
     class problem092():
         def __init__(self):
