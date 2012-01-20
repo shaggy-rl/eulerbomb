@@ -346,6 +346,11 @@ def trianglenumbers():
         yield i * (i + 1) / 2
         i += 1
 
+# Used in problem 101
+def tenthdegpoly(n):
+    """Return the answer of n for the given tenth degree polynomial given in problem 101"""
+    return int( (1 - n) + (n * n) - math.pow(n,3) + math.pow(n,4) - math.pow(n,5) + math.pow(n,6) - math.pow(n,7) + math.pow(n,8) - math.pow(n,9) + math.pow(n,10) ) 
+
 class problems():
     class problem001():
         def __init__(self):
